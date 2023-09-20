@@ -4,76 +4,76 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //public
-    public float walkSpeed;
-    public float runsSpeed;
-    public float rotationSpeed;
-    public bool canMove;
+    //Variables Publicas
     public Transform cameraAim;
-    //private 
-    private Vector3 movementVector;
-    private float actualSpeed;
+    public float walkSpeed, runSpeed, rotationSpeed;
+    public bool canMove;
+
+    //Variables privadas
+    private Vector3 vectorMovement;
+    private float speed;
     private CharacterController characterController;
-   
-
-
     // Start is called before the first frame update
     void Start()
     {
+
         characterController = GetComponent<CharacterController>();
-        actualSpeed = walkSpeed;
-        movementVector = Vector3.zero;
+        speed = walkSpeed;
+        vectorMovement = Vector3.zero;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        Gravity();
         if (canMove)
         {
-            Run();
             Walk();
+            Run();
             AlignPlayer();
         }
+        Gravity();
     }
-
+    //Funciones para caminar
     void Walk()
     {
-        //Get input
-        movementVector.z = Input.GetAxis("Horizontal");
-        movementVector.x = Input.GetAxis("Vertical");
+        //COnseguimos los inputs"
+        vectorMovement.x = Input.GetAxis("Horizontal");
+        vectorMovement.z = Input.GetAxis("Vertical");
+        //Normalizamos el vector de movimiento
+        vectorMovement = vectorMovement.normalized;
 
-       //Normalize
-        movementVector = movementVector.normalized;
+        //Nos movemos en direccion a la camara
+        vectorMovement = cameraAim.TransformDirection(vectorMovement);
 
-        movementVector = cameraAim.TransformDirection(movementVector);
-
-        //Move
-        characterController.Move(movementVector * Time.deltaTime *  actualSpeed);
+        //Movemos al player
+        characterController.Move(vectorMovement * speed * Time.deltaTime);
 
     }
     void Run()
     {
-        if (Input.GetAxis("Run")>0f)
+        //Si presionamos el boton para correr modificamos la velocidad
+        if (Input.GetAxis("Run") > 0f)
         {
-            actualSpeed = runsSpeed;
+            speed = runSpeed;
         }
         else
         {
-            actualSpeed = walkSpeed;
+            speed = walkSpeed;
         }
     }
+    //Funcion provisional de gravedad
     void Gravity()
     {
-        Vector3 gravity = new Vector3(0f, -4 * Time.deltaTime, 0f);
-        characterController.Move(gravity);
+        characterController.Move(new Vector3(0f, -4f * Time.deltaTime, 0f));
     }
 
+    //Funcion para linear al jugador hacia donde se mueve
     void AlignPlayer()
     {
+        //Si nos estamos moviendo, alineamos la rotacion
         if (characterController.velocity.magnitude > 0f)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movementVector), rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vectorMovement), rotationSpeed * Time.deltaTime);
         }
     }
 }
