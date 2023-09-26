@@ -22,13 +22,13 @@ public class ResourceManager : MonoBehaviour
         UpdateUI();
     }
 
-    void RemoveResource(float _value)
+    public void RemoveResource(float _value)
     {
         currentResources -= _value;
         UpdateUI();
     }
 
-    float CurrentResourses()
+    public float CurrentResourses()
     {
         return currentResources;
     }

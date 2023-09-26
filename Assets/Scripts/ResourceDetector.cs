@@ -10,6 +10,7 @@ public class ResourceDetector : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Resource>()){
             resourceManager.AddResource(other.gameObject.GetComponent<Resource>().value);
+            Destroy((other.gameObject));
         }
     }
 }
