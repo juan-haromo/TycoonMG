@@ -7,7 +7,7 @@ public class ResourceManager : MonoBehaviour
 {
     public Text resourceText;
 
-    private float currentResources;
+    public float currentResources;
 
     // Start is called before the first frame update
     void Start()

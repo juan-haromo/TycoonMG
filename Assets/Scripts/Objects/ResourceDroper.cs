@@ -25,7 +25,7 @@ public class ResoureceDroper : MonoBehaviour
 
     void DropResource()
     {
-        if (resources[dropperTier] != null || dropperTier<=resources.Length)
+        if (dropperTier<=resources.Length)
         {
             Instantiate(resources[dropperTier - 1], transform.position, Quaternion.identity);
         }
