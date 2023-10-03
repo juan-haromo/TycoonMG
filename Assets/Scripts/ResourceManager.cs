@@ -35,7 +35,19 @@ public class ResourceManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        resourceText.text = "WillyCoins $" + currentResources;
+        if(currentResources > 1000000)
+        {
+            resourceText.text = "Iron $" + currentResources / 1000000 + "M";
+        }
+        else if (currentResources > 1000)
+        {
+            resourceText.text = "Iron $" + currentResources/1000 + "K";
+        }
+        else
+        {
+            resourceText.text = "Iron $" + currentResources;
+        }
+        
     }
 
 }

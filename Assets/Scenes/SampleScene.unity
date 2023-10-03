@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 149479429}
   - component: {fileID: 149479428}
   - component: {fileID: 149479427}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3758,7 +3758,7 @@ GameObject:
   - component: {fileID: 914929637}
   - component: {fileID: 914929636}
   - component: {fileID: 914929635}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4297,7 +4297,7 @@ GameObject:
   - component: {fileID: 996042400}
   - component: {fileID: 996042399}
   - component: {fileID: 996042398}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5010,6 +5010,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b3a0786d0a5604a8b6a742d2bac023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1218230701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218230702}
+  - component: {fileID: 1218230703}
+  m_Layer: 7
+  m_Name: GroundDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1218230702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218230701}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1570509995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1218230703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218230701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767d22673d19b324d9f01950bce3d8fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0.5
+  detectedLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1225067422
 GameObject:
   m_ObjectHideFlags: 0
@@ -6061,7 +6109,7 @@ GameObject:
   - component: {fileID: 1570509992}
   - component: {fileID: 1570509991}
   - component: {fileID: 1570509996}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6182,6 +6230,7 @@ Transform:
   m_Children:
   - {fileID: 996042397}
   - {fileID: 914929634}
+  - {fileID: 1218230702}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1570509996
@@ -6198,9 +6247,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraAim: {fileID: 1256448998}
   walkSpeed: 10
-  runSpeed: 0
+  runSpeed: 15
   rotationSpeed: 20
+  jumpForce: 5
   canMove: 1
+  groundDetector: {fileID: 1218230703}
 --- !u!1 &1608275983
 GameObject:
   m_ObjectHideFlags: 0
@@ -6574,7 +6625,7 @@ MonoBehaviour:
   OnActivated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526930769}
+      - m_Target: {fileID: 270505532}
         m_TargetAssemblyTypeName: ResoureceDroper, Assembly-CSharp
         m_MethodName: UpgradeDroper
         m_Mode: 1
@@ -6880,7 +6931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceText: {fileID: 463882412}
-  currentResources: 100000
+  currentResources: 0
 --- !u!4 &1906488875
 Transform:
   m_ObjectHideFlags: 0
@@ -7207,7 +7258,7 @@ GameObject:
   - component: {fileID: 1993750344}
   - component: {fileID: 1993750343}
   - component: {fileID: 1993750342}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
