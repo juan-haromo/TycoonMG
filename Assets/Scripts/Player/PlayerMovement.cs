@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         verticalForce = Vector3.zero;
     }
 
-
+    
     void Update()
     {
         if (canMove)

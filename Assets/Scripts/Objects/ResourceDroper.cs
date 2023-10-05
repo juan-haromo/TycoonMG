@@ -27,7 +27,7 @@ public class ResoureceDroper : MonoBehaviour
     {
         if (dropperTier<=resources.Length)
         {
-            Instantiate(resources[dropperTier - 1], transform.position, Quaternion.identity);
+            Instantiate(resources[dropperTier - 1], transform.position, resources[dropperTier -1].transform.rotation);
         }
     }
 
