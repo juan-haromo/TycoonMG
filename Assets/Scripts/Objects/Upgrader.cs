@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Upgrader : MonoBehaviour
 {
 
-    public ResourceManager resourcemanager;
+    private ResourceManager resourceManager;
     public float upgradeCost;
     public string text;
 
@@ -17,6 +17,8 @@ public class Upgrader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resourceManager = FindAnyObjectByType<ResourceManager>();
+
         textMesh = GetComponentInChildren<TextMesh>();
 
         textMesh.text = text + " $ " + upgradeCost;
@@ -32,9 +34,9 @@ public class Upgrader : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (resourcemanager.CurrentResourses() >= upgradeCost)
+            if (resourceManager.CurrentResourses() >= upgradeCost)
             {
-                resourcemanager.RemoveResource(upgradeCost);
+                resourceManager.RemoveResource(upgradeCost);
                 OnActivated.Invoke();
                 Destroy(gameObject);
             }

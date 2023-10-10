@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class ResourceDetector : MonoBehaviour
 {
-    public ResourceManager resourceManager;
+    private ResourceManager resourceManager;
+
+    private void Start()
+    {
+        resourceManager = FindAnyObjectByType<ResourceManager>();
+    }
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
