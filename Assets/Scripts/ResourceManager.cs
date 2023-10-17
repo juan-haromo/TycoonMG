@@ -9,6 +9,12 @@ public class ResourceManager : MonoBehaviour
 
     public float currentResources;
 
+    private int scenaryNextPrize = 150;
+    private int conveyerNextPrize = 75;
+    private int wallNextPrize = 75;
+
+
+    private int actualFloor = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +54,26 @@ public class ResourceManager : MonoBehaviour
             resourceText.text = "Iron $" + currentResources;
         }
         
+    }
+
+    public int GetWallPrize()
+    {
+        int old = wallNextPrize;
+        wallNextPrize += 50 * actualFloor;
+        return old;
+    } 
+    public int GetScenaryPrize()
+    {
+        int old = scenaryNextPrize;
+        wallNextPrize += 75 * actualFloor;
+        return old;
+    } 
+    
+    public int GetConveyerPrize()
+    {
+        int old = conveyerNextPrize;
+        wallNextPrize = (wallNextPrize + 75) * actualFloor;
+        return old;
     }
 
 }

@@ -7,18 +7,23 @@ public class Upgrader : MonoBehaviour
 {
 
     private ResourceManager resourceManager;
-    public float upgradeCost;
     public string text;
+
+    public ObjectType objectType;
 
     public UnityEvent OnActivated;
 
     private TextMesh textMesh;
+    private float upgradeCost;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        resourceManager = FindAnyObjectByType<ResourceManager>();
 
+        resourceManager = FindAnyObjectByType<ResourceManager>();
+        upgradeCost = objectType == ObjectType.Scenary ? resourceManager.GetScenaryPrize() : objectType == ObjectType.Conveyer ? resourceManager.GetConveyerPrize() : resourceManager.GetWallPrize(); ;
         textMesh = GetComponentInChildren<TextMesh>();
 
         textMesh.text = text + " $ " + upgradeCost;
@@ -42,4 +47,13 @@ public class Upgrader : MonoBehaviour
             }
         }
     }
+
+    public enum ObjectType
+    {
+        Scenary,
+        Conveyer,
+        Wall
+    };
+
+
 }
