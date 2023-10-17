@@ -10,7 +10,11 @@ public class ResourceManager : MonoBehaviour
     public float currentResources;
 
     private int scenaryNextPrize = 150;
+    
+
     private int conveyerNextPrize = 75;
+    private int totalUpgrades = 4;
+
     private int wallNextPrize = 75;
 
 
@@ -65,14 +69,15 @@ public class ResourceManager : MonoBehaviour
     public int GetScenaryPrize()
     {
         int old = scenaryNextPrize;
-        wallNextPrize += 75 * actualFloor;
+        scenaryNextPrize += 75 * actualFloor;
         return old;
     } 
     
     public int GetConveyerPrize()
     {
         int old = conveyerNextPrize;
-        wallNextPrize = (wallNextPrize + 75) * actualFloor;
+        conveyerNextPrize += 75 * (int)(totalUpgrades/4) * actualFloor;
+        totalUpgrades++;
         return old;
     }
 

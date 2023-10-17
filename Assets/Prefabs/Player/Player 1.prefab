@@ -76,7 +76,7 @@ Animator:
   m_GameObject: {fileID: 385063145878418363}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0fe5c56d1f7f26449a80b58494536b15, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 34259741ec9ff4e428010a703358cc1a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -482,6 +482,7 @@ GameObject:
   - component: {fileID: 6153220661709198825}
   - component: {fileID: 256343209438655907}
   - component: {fileID: 8047731279322806680}
+  - component: {fileID: 3131207067554388153}
   m_Layer: 7
   m_Name: Player 1
   m_TagString: Player
@@ -582,6 +583,18 @@ MonoBehaviour:
   jumpForce: 7
   canMove: 1
   groundDetector: {fileID: 3915727929657299564}
+--- !u!114 &3131207067554388153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879002004574561248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8319d30b3715d3b48a674a53f41162c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2953792076197962134
 GameObject:
   m_ObjectHideFlags: 0

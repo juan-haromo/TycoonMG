@@ -8,6 +8,7 @@ public class Upgrader : MonoBehaviour
 
     private ResourceManager resourceManager;
     public string text;
+    private string cost;
 
     public ObjectType objectType;
 
@@ -26,7 +27,20 @@ public class Upgrader : MonoBehaviour
         upgradeCost = objectType == ObjectType.Scenary ? resourceManager.GetScenaryPrize() : objectType == ObjectType.Conveyer ? resourceManager.GetConveyerPrize() : resourceManager.GetWallPrize(); ;
         textMesh = GetComponentInChildren<TextMesh>();
 
-        textMesh.text = text + " $ " + upgradeCost;
+        if (upgradeCost > 1000000)
+        {
+            cost = upgradeCost / 1000000 + "M $";
+        }
+        else if (upgradeCost > 1000)
+        {
+            cost = upgradeCost / 1000 + "K $";
+        }
+        else
+        {
+            cost =  upgradeCost + "$";
+        }
+
+        textMesh.text = text + " " + cost;
     }
 
     // Update is called once per frame

@@ -14,18 +14,19 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 vectorMovement;
     private Vector3 verticalForce;
     private float speed;
+    private float currentSpeed;
     private bool isGrounded;
     private CharacterController characterController;
-    private Animator playerAnimator;
     // Start is called before the first frame update
     void Start()
     {
 
         characterController = GetComponent<CharacterController>();
-        speed = walkSpeed;
+        speed = 0.0f;
+        currentSpeed = 0.0f;
+        isGrounded = true;
         vectorMovement = Vector3.zero;
         verticalForce = Vector3.zero;
-        playerAnimator = GetComponentInChildren<Animator>();   
     }
 
     
@@ -53,9 +54,11 @@ public class PlayerMovement : MonoBehaviour
         //Nos movemos en direccion a la camara
         vectorMovement = cameraAim.TransformDirection(vectorMovement);
 
+        //Velocidad actual con suavizado 
+        currentSpeed = Mathf.Lerp(currentSpeed, vectorMovement.magnitude * speed, 10f * Time.deltaTime);
+
         //Movemos al player
-        characterController.Move(vectorMovement * speed * Time.deltaTime);
-        playerAnimator.SetFloat("Speed", vectorMovement == Vector3.zero ? 0 : speed);
+        characterController.Move(currentSpeed * Time.deltaTime * vectorMovement);
     }
     void Run()
     {
@@ -82,7 +85,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         characterController.Move(verticalForce * Time.deltaTime);
-        playerAnimator.SetBool("IsGrounded", isGrounded);
     }
 
     //Funcion para alinear al jugador hacia donde se mueve
@@ -107,5 +109,10 @@ public class PlayerMovement : MonoBehaviour
     void CheckGround()
     {
         isGrounded = groundDetector.GetIsGrounded();
+    }
+
+    public float GetCurrentSpeed()
+    {
+        return currentSpeed;
     }
 }
