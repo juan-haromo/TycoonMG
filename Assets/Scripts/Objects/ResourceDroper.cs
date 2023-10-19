@@ -14,7 +14,7 @@ public class ResoureceDroper : MonoBehaviour
     void Start()
     {
         dropperTier = 1;
-        InvokeRepeating("DropResource", spwanTime,spwanTime);
+        DropResource();
     }
 
     // Update is called once per frame
@@ -29,6 +29,15 @@ public class ResoureceDroper : MonoBehaviour
         {
             Instantiate(resources[dropperTier - 1], transform.position, resources[dropperTier -1].transform.rotation);
         }
+
+        StartCoroutine(NextResourceDelay());
+
+    }
+
+    IEnumerator NextResourceDelay()
+    {
+        yield return new WaitForSeconds(spwanTime);
+        DropResource();
     }
 
     public void  UpgradeDroper()

@@ -17,6 +17,9 @@ public class ResourceManager : MonoBehaviour
 
     private int wallNextPrize = 75;
 
+    private bool isWallDone = false;
+    private bool isConveyersDone = false;
+
 
     private int actualFloor = 1;
     // Start is called before the first frame update
@@ -76,9 +79,35 @@ public class ResourceManager : MonoBehaviour
     public int GetConveyerPrize()
     {
         int old = conveyerNextPrize;
-        conveyerNextPrize += 75 * (int)(totalUpgrades/4) * actualFloor;
+        conveyerNextPrize += 300 * (int)(totalUpgrades/4) * actualFloor;
         totalUpgrades++;
         return old;
+    }
+
+    public int GetFloorPrize()
+    {
+        actualFloor++;
+        return conveyerNextPrize *  actualFloor;
+    }
+
+    public void DoneConveyers()
+    {
+        isConveyersDone = true;
+    }
+    public void DoneWalls()
+    {
+        isWallDone = true;  
+    }
+
+    public bool NextFloorReady()
+    {
+        return isConveyersDone && isWallDone;
+    }
+
+    public void NewFloorCreated()
+    {
+        isWallDone = false;
+        isConveyersDone = false;
     }
 
 }

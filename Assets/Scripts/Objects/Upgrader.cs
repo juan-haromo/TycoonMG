@@ -24,7 +24,10 @@ public class Upgrader : MonoBehaviour
     {
 
         resourceManager = FindAnyObjectByType<ResourceManager>();
-        upgradeCost = objectType == ObjectType.Scenary ? resourceManager.GetScenaryPrize() : objectType == ObjectType.Conveyer ? resourceManager.GetConveyerPrize() : resourceManager.GetWallPrize(); ;
+        upgradeCost = objectType == ObjectType.Scenary ? resourceManager.GetScenaryPrize() 
+            : objectType == ObjectType.Conveyer ? resourceManager.GetConveyerPrize() 
+            : objectType == ObjectType.Wall? resourceManager.GetWallPrize() 
+            : resourceManager.GetFloorPrize() ;
         textMesh = GetComponentInChildren<TextMesh>();
 
         if (upgradeCost > 1000000)
@@ -66,8 +69,17 @@ public class Upgrader : MonoBehaviour
     {
         Scenary,
         Conveyer,
-        Wall
+        Wall,
+        Floor
     };
 
+    public void FinishedWalls()
+    {
+        resourceManager.DoneWalls();
+    }
 
+    public void FinishedConveyers()
+    {
+        resourceManager.DoneConveyers();
+    }
 }
