@@ -35014,7 +35014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0654c46fc16e86343b75096d28f0d257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Buy droper
+  text: Next floor
   objectType: 3
   OnActivated:
     m_PersistentCalls:
