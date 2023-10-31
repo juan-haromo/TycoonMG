@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float currentSpeed;
     private bool isGrounded;
     private CharacterController characterController;
+    private bool isDancing;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,20 +35,29 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            Walk();
-            Run();
-            AlignPlayer();
-            Jump();
+            Move();
         }
         Gravity();
         CheckGround();
     }
+
+    public void Move()
+    {
+        
+        Walk();
+        Run();
+        AlignPlayer();
+        Jump();
+    }
+
     //Funciones para caminar
     void Walk()
     {
         //Conseguimos los inputs
         vectorMovement.x = Input.GetAxis("Horizontal");
         vectorMovement.z = Input.GetAxis("Vertical");
+        if (Input.GetKey(KeyCode.Q)) { isDancing = true; }
+        if(isDancing && (vectorMovement.x>0.3f || vectorMovement.z > 0.3f || !isGrounded)) { isDancing=false; }
         //Normalizamos el vector de movimiento
         vectorMovement = vectorMovement.normalized;
 
@@ -114,5 +124,15 @@ public class PlayerMovement : MonoBehaviour
     public float GetCurrentSpeed()
     {
         return currentSpeed;
+    }
+    
+    public bool IsDancing()
+    {
+        return isDancing;
+    }
+
+    public void Stop()
+    {
+        currentSpeed = 0.0f;    
     }
 }

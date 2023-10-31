@@ -26,10 +26,14 @@ public class PlayerAnimationsController : MonoBehaviour
 
     private void SetParameters()
     {
-        CheckSpeed();
-        CheckGrounded();
-        playerAnimator.SetFloat("Speed", speed);
-        playerAnimator.SetBool("IsGrounded", isGrounded);
+         playerAnimator.SetBool("IsDancing", playerMovement.IsDancing());
+         CheckSpeed();
+         CheckGrounded();
+         playerAnimator.SetFloat("Speed", speed);
+         playerAnimator.SetBool("IsGrounded", isGrounded);
+        
+        
+        
     }
 
     public void CheckSpeed()

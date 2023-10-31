@@ -12,19 +12,24 @@ public class TabletUI : MonoBehaviour
     public TMP_Text generateButtonText;
     public TMP_Text upgradeGenerateButtonText;
     private int clickGeneratorCost = 100;
+    [SerializeField] PlayerMovement playerMovement;
     // Start is called before the first frame update
 
     private void Start()
     {
+        UI.gameObject.SetActive(false);
         resourceManager = FindObjectOfType<ResourceManager>();
         upgradeGenerateButtonText.text = "Update click " + clickGeneratorCost + "$";
         generateButtonText.text = "Generate " + clickResource + "$";
+
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             UI.gameObject.SetActive(!UI.activeSelf);
+            playerMovement.canMove = !(playerMovement.canMove); 
+            playerMovement.Stop();
         }
     }
     public void GenerateResourece()
