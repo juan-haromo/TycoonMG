@@ -8,6 +8,7 @@ public class PlayerDances : MonoBehaviour
     [SerializeField] Animator playerAnimation;
     private ResourceManager resourceManager;
     [SerializeField] private GameObject dance;
+    [SerializeField] GameObject multiplier;
 
     // Start is called before the first frame update
     private void Start()
@@ -29,4 +30,6 @@ public class PlayerDances : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+  
 }

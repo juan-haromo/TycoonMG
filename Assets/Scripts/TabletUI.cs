@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class TabletUI : MonoBehaviour
 {
@@ -14,10 +15,14 @@ public class TabletUI : MonoBehaviour
     private int clickGeneratorCost = 100;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] CameraController cameraControlls;
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject tabletExample;
+ 
     // Start is called before the first frame update
 
     private void Start()
     {
+
         UI.gameObject.SetActive(true);
         resourceManager = FindObjectOfType<ResourceManager>();
         upgradeGenerateButtonText.text = "Update click " + clickGeneratorCost + "$";
@@ -25,15 +30,22 @@ public class TabletUI : MonoBehaviour
         UI.gameObject.SetActive(false);
         playerMovement.canMove = true;
         cameraControlls.canRotate = true;
+        
+        
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+
+        if (Input.GetKeyDown(KeyCode.E) && !(pauseMenu.activeSelf))
         {
+            tabletExample.SetActive(false); 
+            CursorState(!UI.activeSelf);
             UI.gameObject.SetActive(!UI.activeSelf);
             playerMovement.canMove = !(playerMovement.canMove);
             cameraControlls.canRotate = !(cameraControlls.canRotate);
             playerMovement.Stop();
+            
+            
         }
     }
     public void GenerateResourece()
@@ -57,6 +69,19 @@ public class TabletUI : MonoBehaviour
             generateButtonText.text = "Generate " + clickGenerate;
         }
         
+    }
+
+    public void CursorState(bool state)
+    {
+        Cursor.visible = state;
+        if (state)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
 }
