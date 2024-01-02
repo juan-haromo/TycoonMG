@@ -31,9 +31,6 @@ public class PlayerAnimationsController : MonoBehaviour
          CheckGrounded();
          playerAnimator.SetFloat("Speed", speed);
          playerAnimator.SetBool("IsGrounded", isGrounded);
-        
-        
-        
     }
 
     public void CheckSpeed()

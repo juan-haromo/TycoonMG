@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public GroundDetector groundDetector;
     
     //Variables privadas
-    private Vector3 vectorMovement;
+    [SerializeField] private Vector3 vectorMovement;
     private Vector3 verticalForce;
     private float speed;
     private float currentSpeed;
@@ -123,7 +123,22 @@ public class PlayerMovement : MonoBehaviour
 
     public float GetCurrentSpeed()
     {
-        return currentSpeed;
+        if(currentSpeed < 0.2f )
+        {
+            return 0;
+        }
+        else if(4.8f < currentSpeed && currentSpeed < 5.2f)
+        {
+            return 5;
+        }
+        else if (14.8f<currentSpeed)
+        {
+            return 15;
+        }
+        else 
+        { 
+            return currentSpeed;
+        }
     }
     
     public bool IsDancing()
